@@ -42,19 +42,21 @@ mongoose
   .then((result) => {
     app.listen(PORT, () => {
       console.log("Database connected");
-      User.findOne().then((user) => {
-        if (!user) {
-          const user = new User({
-            name: "David",
-            email: "david@gmail.com",
-            cart: {
-              items: [],
-            },
-          });
-          user.save();
-        } else {
-          console.log("User Already Exist");
-        }
+      User.deleteMany({ name: { $exists: false } }).then(() => {
+        User.findOne().then((user) => {
+          if (!user) {
+            const user = new User({
+              name: "David",
+              email: "david@gmail.com",
+              cart: {
+                items: [],
+              },
+            });
+            user.save();
+          } else {
+            console.log("User Already Exist");
+          }
+        });
       });
       console.log("App is running on the port http://localhost:3000");
     });
@@ -68,3 +70,4 @@ mongoose
 //     console.log("App is running on the port http://localhost:3000");
 //   });
 // });
+
