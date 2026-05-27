@@ -32,6 +32,13 @@ pipeline {
             }
         }
 
+
+         stage('Wait for Application Startup') {
+            steps {
+                sh 'sleep 60'
+            }
+        }
+
         stage('Application Health Check') {
             steps {
                 sh 'curl -f http://localhost:3000 || exit 1'
