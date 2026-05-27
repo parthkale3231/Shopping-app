@@ -10,7 +10,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: 'main',
-                url: 'https://github.com/parthkale3231/ShopingKaro.git'
+                url: 'https://github.com/parthkale3231/Shopping-app.git'
             }
         }
 
